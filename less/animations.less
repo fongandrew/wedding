@@ -1,0 +1,213 @@
+@import "./variables";
+
+@keyframes bounce-in {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(.97, .97, .97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes fade-in {
+  from, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1.0;
+  }
+}
+
+@keyframes color-shift {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    color: #a464c6;
+  }
+
+  25% {
+    color: #1e9b5c;
+  }
+
+  50% {
+    color: #d9534f;
+  }
+
+  75% {
+    color: #0080ce
+  }
+
+  to {
+    color: #a464c6;
+  }
+}
+
+
+/* Dance moves */
+
+@keyframes dance-1 {
+  from, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    transform:  translateY(0%) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(50%) rotate(25deg);
+  }
+
+  50% {
+    transform: translateY(0%) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(50%) rotate(-25deg) ;
+  }
+
+  to {
+    transform: translateY(0%) rotate(0deg);
+  }
+}
+
+@keyframes dance-2 {
+  from, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    transform: translate(0%, -25%) scaleX(1);
+  }
+
+  8% {
+    transform: translate(25%, 0%) scaleX(1);
+  }
+
+  17% {
+    transform: translate(50%, -25%) scaleX(1);
+  }
+
+  25% {
+    transform: translate(75%, 0%) scaleX(-1);
+  }
+
+  33% {
+    transform: translate(50%, -25%) scaleX(-1);
+  }
+
+  42% {
+    transform: translate(25%, 0%) scaleX(-1);
+  }
+
+  50% {
+    transform: translate(0%, -25%) scaleX(-1);
+  }
+
+  58% {
+    transform: translate(-25%, 0%) scaleX(-1);
+  }
+
+  67% {
+    transform: translate(-50%, -25%) scaleX(-1);
+  }
+
+  75% {
+    transform: translate(-75%, 0%) scaleX(1);
+  }
+
+  83% {
+    transform: translate(-50%, -25%) scaleX(1);
+  }
+
+  92% {
+    transform: translate(-25%, 0%) scaleX(1);
+  }
+
+  to {
+    transform: translate(0%, -25%) scaleX(1);
+  }
+}
+
+@keyframes dance-3 {
+  from, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    transform: translate(0%, 0%) scaleX(1);
+  }
+
+  25% {
+    transform: translate(0%, -50%) scaleX(1);
+  }
+
+  50% {
+    transform: translate(0%, 0%) scaleX(-1);
+  }
+
+  75% {
+    transform: translate(0%, -50%) scaleX(-1);
+  }
+
+  100% {
+    transform: translate(0%, 0%) scaleX(1);
+  }
+}
+
+@keyframes dance-4 {
+  from, to {
+    animation-timing-function: ease-in-out;
+  }
+
+  0% {
+    transform:  translateY(0%) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(50%) rotate(5deg);
+  }
+
+  50% {
+    transform: translateY(0%) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(50%) rotate(-5deg) ;
+  }
+
+  to {
+    transform: translateY(0%) rotate(0deg);
+  }
+}

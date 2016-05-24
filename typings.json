@@ -1,0 +1,10 @@
+{
+  "ambientDependencies": {
+    "bootstrap": "github:esperco/DefinitelyTyped/bootstrap/bootstrap.d.ts#f53108644c2f32b93de423d844650297fc415a8b",
+    "jquery": "github:esperco/DefinitelyTyped/jquery/jquery.d.ts#f53108644c2f32b93de423d844650297fc415a8b",
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#c8630523ef2ee3fb42fe65cc17af5b1b56e611bc",
+    "moment": "github:esperco/DefinitelyTyped/moment/moment.d.ts#f53108644c2f32b93de423d844650297fc415a8b",
+    "moment-node": "github:esperco/DefinitelyTyped/moment/moment-node.d.ts#f53108644c2f32b93de423d844650297fc415a8b",
+    "page": "github:esperco/DefinitelyTyped/page/page.d.ts#f53108644c2f32b93de423d844650297fc415a8b"
+  }
+}

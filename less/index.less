@@ -1,0 +1,138 @@
+// Import Bootstrap
+@import "../node_modules/bootstrap/less/bootstrap";
+
+// Override Bootstrap variables
+@import "./variables";
+
+// Font-Awesome
+@import "../node_modules/font-awesome/less/font-awesome";
+
+// Misc animations
+@import "./animations";
+
+html, body {
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.no-break {
+  white-space: nowrap;
+}
+
+.navbar {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
+}
+
+// Pages => 100% height, clip remainder for animation purposes
+.page {
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .page-content {
+    position: relative;
+    z-index: 20;
+  }
+
+  .page-background {
+    img, div, span {
+      z-index: 0;
+    }
+  }
+}
+
+// Splash
+#splash {
+  padding: @jumbotron-padding;
+  padding-top: @navbar-height * 2;
+  text-align: center;
+
+  h1 {
+    font-family: 'Tangerine', cursive;
+  }
+
+  .page-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transition: transform 1.25s ease-in-out;
+    transform: translateY(200%);
+
+    &.active {
+      transform: translateY(25%);
+    }
+  }
+}
+
+.dance-party-header {
+  display: none;
+  font-weight: bold;
+  font-size: @font-size-h3;
+  text-transform: uppercase;
+
+  &.active {
+    display: block;
+    animation: bounce-in 0.75s, color-shift 3s infinite;
+  }
+}
+
+.date-location-header {
+  display: none;
+  text-transform: uppercase;
+
+  &.active {
+    display: block;
+    animation: fade-in 1s;
+  }
+}
+
+// Dancing bunnies
+img.dancing-rabbit {
+  width: auto;
+  position: relative
+}
+
+.dancing-crowd {
+  &.shift-left {
+    transform: translateX(-150px);
+  }
+
+  &.shift-right {
+    transform: translateX(150px);
+  }
+}
+
+#dancing-crowd-1 {
+  height: 170px;
+  animation: dance-4 2s infinite;
+}
+
+#dancing-crowd-2 {
+  height: 170px;
+  animation: dance-4 2s 1.3s infinite;
+}
+
+#dancing-lop {
+  height: 200px;
+  animation: dance-1 2s infinite;
+}
+
+#dancing-tort {
+  height: 175px;
+  animation: dance-2 3s 0.1s infinite;
+  left: 25%;
+}
+
+#dancing-brown {
+  height: 200px;
+  animation: dance-3 2.25s 0.25s infinite;
+  right: 25%;
+}

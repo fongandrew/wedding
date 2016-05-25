@@ -10,12 +10,15 @@
 // Misc animations
 @import "./animations";
 
+@transparency: fadeout(@body-bg, 20%);
+
 html, body {
   height: 100%;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.16);
 }
 
 .no-break {
@@ -23,15 +26,17 @@ h1, h2, h3, h4 {
 }
 
 .navbar {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
+  background: @transparency;
 }
 
 // Pages => 100% height, clip remainder for animation purposes
 .page {
+  padding: @padding-large-vertical 0;
   min-height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(180deg, @body-bg 33%, lighten(@body-bg, 10%));
 
   .page-content {
     position: relative;
@@ -43,6 +48,35 @@ h1, h2, h3, h4 {
       z-index: 0;
     }
   }
+
+  &.inverse {
+    background: @brand-primary;
+    background: linear-gradient(180deg, @brand-primary 33%,
+                                darken(@brand-primary, 5%));
+    color: white;
+    box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.16);
+
+    a {
+      color: @link-alt;
+      font-weight: bold;
+
+      &:hover, &:active, &:visited {
+        color: @link-alt-hover;
+      }
+    }
+  }
+
+  .row.padded {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// Anchors used for linking to control navbar spacing when scrolling around
+.anchor {
+  display: block;
+  height: @navbar-height;
+  margin-top: -@navbar-height;
 }
 
 // Splash
@@ -53,6 +87,7 @@ h1, h2, h3, h4 {
 
   h1 {
     font-family: 'Tangerine', cursive;
+    color: @brand-primary;
   }
 
   .page-background {
@@ -137,4 +172,20 @@ img.dancing-rabbit {
   height: 200px;
   animation: dance-3 2.25s 0.25s infinite;
   right: 25%;
+}
+
+// Misc formatting
+.col-info {
+  // padding-top: @padding-large-vertical;
+  padding-bottom: @padding-large-vertical;
+
+  @media screen and (max-width: @screen-xs-max) {
+    text-align: center;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.16);
+    text-align: center;
+  }
 }

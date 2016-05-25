@@ -101,23 +101,25 @@ img.dancing-rabbit {
 }
 
 .dancing-crowd {
-  &.shift-left {
-    transform: translateX(-150px);
-  }
-
-  &.shift-right {
-    transform: translateX(150px);
-  }
+  height: 170px;
+  background-size: auto 170px;
+  background-repeat: repeat-x;
+  background-position: center;
 }
 
-#dancing-crowd-1 {
-  height: 170px;
+#dancing-crowd-left {
+  background-image: url('/img/crowd-left.svg');
   animation: dance-4 2s infinite;
 }
 
-#dancing-crowd-2 {
-  height: 170px;
+#dancing-crowd-right {
+  background-image: url('/img/crowd-right.svg');
   animation: dance-4 2s 1.3s infinite;
+}
+
+#dancing-crowd-back {
+  background-size: auto 125px;
+  background-image: url('/img/crowd-bg.svg');
 }
 
 #dancing-lop {

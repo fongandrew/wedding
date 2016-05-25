@@ -24,6 +24,10 @@ gulp.task("build-less", function() {
   return gulp.src("./less/**/*.less")
     .pipe(sourcemaps.init())
     .pipe(less())
+    .on('error', function(err) {
+      console.error(err.toString());
+      this.emit('end');
+    })
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./pub/css"));
 });

@@ -33,7 +33,6 @@ namespace AFCC {
     $(".navbar-nav li a, .scroll-link").click(function() {
       var target = $(this).attr('href');
       if (target === "#") { target = "#splash"; }
-      console.info(target);
 
       var targetElm = $(target);
       if (targetElm.length) {
@@ -64,6 +63,21 @@ namespace AFCC {
     });
   }
 
+  // Fire event when scrolling past photo
+  export function scrollFirePhoto() {
+    $('.page').each(function(index, elm) {
+      var top = $(elm).offset().top;
+      $(window).scroll(function() {
+        // 100px buffer for stuff like navbar
+        if (window.pageYOffset + 100 > top) {
+          setTimeout(function() {
+            $(elm).find('.photo').addClass('active')
+          }, Conf.PhotoActiveDelay);
+        };
+      });
+    });
+  }
+
   export function init() {
     // Splash
     setTimeout(splashDanceParty, Conf.DancePartyHeaderStart);
@@ -76,6 +90,9 @@ namespace AFCC {
 
     // Navbar settings
     navbarScrollLinks();
+
+    // Misc event handlers
+    scrollFirePhoto();
   }
 }
 

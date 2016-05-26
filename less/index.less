@@ -10,7 +10,8 @@
 // Misc animations
 @import "./animations";
 
-@transparency: fadeout(@body-bg, 20%);
+@transparency: fadeout(@body-bg, 5%);
+@shadow: rgba(0, 0, 0, 0.16);
 
 html, body {
   height: 100%;
@@ -18,7 +19,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.16);
+  text-shadow: 1px 1px 1px @shadow;
 }
 
 .no-break {
@@ -27,6 +28,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   background: @transparency;
+  border: 0;
+
+  .navbar-brand {
+    color: @brand-primary;
+  }
+
+  .nav > li > a {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 }
 
 // Pages => 100% height, clip remainder for animation purposes
@@ -54,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(180deg, @brand-primary 33%,
                                 darken(@brand-primary, 5%));
     color: white;
-    box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 -2px 2px @shadow;
 
     a {
       color: @link-alt;
@@ -69,6 +80,35 @@ h1, h2, h3, h4, h5, h6 {
   .row.padded {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  img.photo {
+    border: @padding-large-horizontal solid white;
+    box-shadow: 2px 2px 2px @shadow;
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
+
+    // Slighty rotatation animation
+    transition: transform 0.6s;
+    transform-origin: @padding-base-horizontal @padding-base-vertical;
+    &.active {
+      transform: rotate(3deg);
+    }
+
+    @media screen and (min-width: @screen-sm-min) {
+      float: left;
+      max-width: 50%;
+      margin: 0 @padding-large-horizontal;
+    }
+
+    @media screen and (min-width: @screen-md-min) {
+      max-width: 33%;
+    }
+
+    @media screen and (min-width: @screen-lg-min) {
+      max-width: 25%;
+    }
   }
 }
 
@@ -174,6 +214,12 @@ img.dancing-rabbit {
   right: 25%;
 }
 
+// Map
+.map-container iframe {
+  box-shadow: 0 2px 2px @shadow;
+  background: @gray-lighter;
+}
+
 // Misc formatting
 .col-info {
   // padding-top: @padding-large-vertical;
@@ -185,7 +231,7 @@ img.dancing-rabbit {
 
   h1, h2, h3, h4, h5 {
     font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.16);
+    text-shadow: 1px 1px 1px @shadow;
     text-align: center;
   }
 }

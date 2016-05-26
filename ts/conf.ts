@@ -5,7 +5,9 @@ namespace AFCC.Conf {
   // How long before dance party bunnies start
   export const DancePartyHeaderBunnies = 2200;
 
-  // Show tex for date and location
+  // Show text for date and location
   export const ShowDateLocationHeader = 2500;
 
+  // Delay for photo animation
+  export const PhotoActiveDelay = 500;
 }

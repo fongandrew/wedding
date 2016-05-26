@@ -28,6 +28,42 @@ namespace AFCC {
     });
   }
 
+  // Scrolling for navbar
+  export function navbarScrollLinks() {
+    $(".navbar-nav li a, .scroll-link").click(function() {
+      var target = $(this).attr('href');
+      if (target === "#") { target = "#splash"; }
+      console.info(target);
+
+      var targetElm = $(target);
+      if (targetElm.length) {
+
+        // Customize duration based on expected travel time
+        var current = $('body').scrollTop();
+        var dest = targetElm.offset().top;
+        var duration = Math.abs(current - dest) / 1; // 1px per ms
+
+        // Default to 800 if bad math for whatever reason
+        if (isNaN(duration)) { duration = 800; }
+
+        // Cap longer scrolls
+        duration = Math.min(duration, 1000);
+
+        // Animate scroll
+        $('html, body').animate({
+          scrollTop: targetElm.offset().top
+        }, duration);
+
+        // Scrolling, ignore default link behavior
+        return false;
+      }
+
+      // Not scrolling -- failed for whatever reason so just try to jump
+      // to link
+      return true;
+    });
+  }
+
   export function init() {
     // Splash
     setTimeout(splashDanceParty, Conf.DancePartyHeaderStart);
@@ -37,6 +73,9 @@ namespace AFCC {
     // Map
     fixMap();
     $(window).scroll(fixMap);
+
+    // Navbar settings
+    navbarScrollLinks();
   }
 }
 

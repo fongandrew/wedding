@@ -77,11 +77,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  .row.padded {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   img.photo {
     border: @padding-large-horizontal solid white;
     box-shadow: 2px 2px 2px @shadow;
@@ -99,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
     @media screen and (min-width: @screen-sm-min) {
       float: left;
       max-width: 50%;
-      margin: 0 @padding-large-horizontal;
+      margin: 0 @padding-large-horizontal * 2;
     }
 
     @media screen and (min-width: @screen-md-min) {

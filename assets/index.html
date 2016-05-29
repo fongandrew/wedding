@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/index.css" media="screen">
   <!-- <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
+
 </head>
 
 <body>
@@ -139,7 +140,7 @@
       <h2>Our Story</h2>
       <div class="row"><div class="col-sm-12">
         <img class="photo" src="/img/justthe2ofus.jpg" />
-        <div id="story-1">
+        <div id="story-1" class="story-content">
           <p>Andrew and Christina</p>
         </div>
       </div></div>
@@ -167,5 +168,17 @@
   </div>
 
   <script src="js/app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js">
+  </script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBlmYn8Te9y0CMer07cOMRZFb3YUjOBSwU",
+      authDomain: "wedding-717fe.firebaseapp.com",
+      databaseURL: "https://wedding-717fe.firebaseio.com",
+      storageBucket: "wedding-717fe.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 </html>

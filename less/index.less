@@ -38,7 +38,49 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     font-weight: bold;
   }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  @media screen and (max-width: @screen-xs-max) {
+    .navbar-header {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-toggle {
+      display: block;
+      cursor: pointer;
+      float: right;
+      padding: @navbar-padding-vertical @navbar-padding-horizontal;
+    }
+
+    .nav-menu {
+      background: @transparency;
+      position: fixed;
+      z-index: 1;
+      top: @navbar-height;
+      bottom: 0;
+      left: 0; right: 0; width: 100%;
+      padding: @jumbotron-padding 0 @jumbotron-padding * 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s;
+
+      &.active {
+        pointer-events: auto;
+        opacity: 1.0;
+      }
+    }
+
+    .nav-menu li {
+      text-align: center;
+      padding: @padding-base-vertical 0;
+    }
+  }
 }
+
 
 // Pages => 100% height, clip remainder for animation purposes
 .page {

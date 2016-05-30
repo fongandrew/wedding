@@ -19,11 +19,10 @@ const $ = require('jquery');
   }
 */
 export function saveGuest(data) {
-  console.info(data);
   var updates = {};
   var key = firebase.database().ref().child('guests').push().key;
   updates['/guests/' + key] = data;
-  firebase.database().ref().update(updates).then(onSave, onError)
+  return firebase.database().ref().update(updates);
 }
 
 // Takes serialized name-value pairs and forms it for saving
@@ -76,7 +75,7 @@ function deactivate(elm) {
 function onSave() {
   activate(saveMsg);
   deactivate(errorMsg);
-  $(rsvpForm).hide();
+  // $(rsvpForm).hide();
 }
 
 function onError(err) {
@@ -101,6 +100,7 @@ const errorClass = "has-error";
 const attendingYes = '#attending-yes';
 const attendingNo = '#attending-no';
 const attendingShow = ".attending-show";
+const spinner = ".spinner";
 
 export function cloneTemplate() {
   var newGuest = $(guestTemplate).clone();
@@ -143,9 +143,18 @@ export function init() {
 
   $(submitBtn).click(function(e) {
     e.preventDefault();
+
     if (validate()) {
+      activate($(submitBtn).find(spinner));
+      $(submitBtn).prop("disabled", true);
+
       var data = $(rsvpForm).serializeArray();
-      saveGuest(formatData(data));
+      saveGuest(formatData(data))
+        .then(onSave, onError)
+        .always(function() {
+          deactivate($(submitBtn).find(spinner));
+          $(e).prop("disabled", false);
+        });
     }
   });
 

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const $ = require('jquery');
 const Conf = require('./conf.es6');
+const RSVP = require('./rsvp.es6');
 
 const activeCls = "active";
 
@@ -181,9 +182,18 @@ function init() {
 
   // Misc event handlers
   scrollFirePhoto();
+
+  // Hook up RSVP code
+  RSVP.init();
 }
 
 
 $(document).ready(function() {
   init();
 });
+
+
+
+/* For console */
+window.$ = window.jquery = $;
+window._ = window.lodash = _;

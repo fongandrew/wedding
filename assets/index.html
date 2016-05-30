@@ -149,10 +149,112 @@
   <!-- RSVP -->
   <a id="rsvp" name="rsvp" class="anchor"></a>
   <div class="page inverse">
-    <div class="page-content">
+    <div class="page-content container">
       <h2>RSVP</h2>
 
+      <div id="save-msg" class="alert alert-success msg">
+        <i class="fa fa-fw fa-check"></i>
+        Thanks! We got your response.
+      </div>
 
+      <div id="error-msg" class="alert alert-danger msg">
+        <i class="fa fa-fw fa-warning"></i>
+        Whoops. There was an error. Try again
+        or send an e-mail to fongandrew<i class="fa fa-at"></i>gmail.com.
+      </div>
+
+      <form id="rsvp-form" class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">
+            Attending?
+          </label>
+          <div class="attending-radios col-sm-10">
+            <label class="radio-inline">
+              <input type="radio" name="attending" id="attending-yes"
+                     value="yes" checked="checked" />
+              Yes!
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="attending" id="attending-no"
+                     value="no">
+              No, I am too busy saving the world from evil
+              space aliens.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="first-name-1" class="col-sm-2 control-label">
+            Name
+          </label>
+          <div class="col-sm-10">
+            <div class="name-group">
+            <input type="text" id="first-name-1" required="true"
+              name="first-name" class="form-control name-input first-name"
+              placeholder="Given Name" />
+            <input type="text" id="last-name-1" required="true"
+              name="last-name" class="form-control name-input last-name"
+              placeholder="Surname" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label">
+            Email
+          </label>
+          <div class="col-sm-10">
+            <input type="email" required="true"
+                   class="form-control" name="email"
+                   id="email" placeholder="you@email.com">
+          </div>
+        </div>
+        <div class="form-group attending-show">
+          <label for="address" class="col-sm-2 control-label">
+            Mailing Address</label>
+          <div class="col-sm-10">
+            <textarea id="address" class="form-control" rows="3"
+              name="address" required="true"
+              placeholder="30 Rockefeller Plaza, New York City, NY"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group add-guest-prompt clearfix attending-show">
+          <div class="col-sm-12">
+          <label for="add-guest-btn" class="form-text">
+            Are you bringing your significant other and/or kids?
+          </label>
+          <button id="add-guest-btn" class="btn btn-info pull-right">
+            <i class="fa fa-plus"></i>
+            Add Guest
+          </button>
+          </div>
+        </div>
+
+        <!-- Template = copy this for new elements -->
+        <div class="name-group template">
+          <input type="text" name="first-name"
+            class="form-control name-input first-name"
+            placeholder="Given Name" />
+          <input type="text" name="last-name"
+            class="form-control name-input last-name"
+            placeholder="Surname" />
+          <i class="fa fa-fw fa-minus-circle action rm-action"></i>
+        </div>
+
+        <!-- New guests go here -->
+        <div class="row attending-show">
+          <div id="plus-ones" class="col-sm-12"></div>
+        </div>
+
+        <hr />
+
+        <div class="form-group"><div class="col-sm-12">
+          <button id="rsvp-submit-btn"
+                  class="btn btn-success pull-right">
+            Submit
+          </button>
+        </div></div>
+      </form>
     </div>
   </div>
 

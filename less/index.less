@@ -26,6 +26,20 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
 }
 
+.action {
+  cursor: pointer;
+
+  &:hover, &:focus {
+    text-shadow: 2px 2px 4px @shadow;
+  }
+}
+
+.btn {
+  &:hover, &:focus {
+    box-shadow: 2px 2px 4px @shadow;
+  }
+}
+
 .navbar {
   background: @transparency;
   border: 0;
@@ -276,4 +290,78 @@ img.dancing-rabbit {
 // Story message
 .story-content {
   padding: @padding-large-horizontal 0;
+}
+
+
+/* RSVP */
+
+.msg {
+  text-align: center;
+  display: none;
+
+  &.active {
+    display: block;
+    animation: bounce-in 0.75s;
+  }
+}
+
+#save-msg {
+  margin-top: @jumbotron-padding;
+}
+
+.form-text {
+  padding-bottom: @padding-base-vertical;
+  text-align: center;
+
+  @media screen and (min-width: @screen-sm-min) {
+    line-height: @input-height-base;
+    padding-bottom: 0;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+  #add-guest-btn {
+    width: 100%;
+  }
+}
+
+label.form-text {
+  margin-bottom: 0;
+}
+
+.name-group {
+  position: relative;
+  display: flex;
+
+  .name-input {
+    // margin-bottom: @form-group-margin-bottom;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .name-input + .name-input {
+    margin-left: @form-group-margin-bottom;
+  }
+
+  .rm-action {
+    position: absolute;
+    font-size: 1.25em;
+    top: 0;
+    right: -@input-height-base;
+    line-height: @input-height-base;
+    width: @input-height-base;
+
+    &:hover, &:focus {
+      color: @brand-danger;
+    }
+  }
+
+  & + .name-group {
+    margin-top: @form-group-margin-bottom;
+  }
+}
+
+.template {
+  display: none;
 }

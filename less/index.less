@@ -34,6 +34,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.container {
+  @media screen and (min-width: @screen-sm-min) {
+    &.narrow {
+      max-width: 60%;
+    }
+  }
+}
+
 .btn {
   &:hover, &:focus {
     box-shadow: 2px 2px 4px @shadow;
@@ -99,15 +107,22 @@ h1, h2, h3, h4, h5, h6 {
 // Pages => 100% height, clip remainder for animation purposes
 .page {
   padding: @padding-large-vertical 0;
-  min-height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, @body-bg 33%, lighten(@body-bg, 10%));
+  min-height: 100%;
 
   .page-content {
     position: relative;
     z-index: 20;
+
+    &.vertical-center {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
   }
 
   .page-background {
@@ -130,6 +145,11 @@ h1, h2, h3, h4, h5, h6 {
       &:hover, &:active, &:visited {
         color: @link-alt-hover;
       }
+    }
+
+    .has-error .control-label {
+      color: lighten(@brand-danger, 5%);
+      text-shadow: 1px 1px 2px @shadow;
     }
   }
 
@@ -172,6 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Splash
 #splash {
+  min-height: 100%;
   padding: @jumbotron-padding;
   padding-top: @navbar-height * 2;
   text-align: center;
@@ -324,6 +345,14 @@ img.dancing-rabbit {
   #add-guest-btn {
     width: 100%;
   }
+
+  #plus-ones {
+    margin-right: @input-height-base;
+  }
+}
+
+.attending-radios .radio-inline {
+  margin-left: 10px;
 }
 
 label.form-text {
@@ -353,7 +382,7 @@ label.form-text {
     width: @input-height-base;
 
     &:hover, &:focus {
-      color: @brand-danger;
+      color: lighten(@brand-danger, 5%);
     }
   }
 
@@ -364,4 +393,23 @@ label.form-text {
 
 .template {
   display: none;
+}
+
+.spinner {
+  display: none;
+
+  &.active {
+    display: inline-block;
+  }
+}
+
+
+/* Registry */
+.payment-btns {
+  text-align: center;
+
+  .btn {
+    width: 100%;
+    margin-bottom: @form-group-margin-bottom;
+  }
 }

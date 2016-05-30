@@ -3,6 +3,7 @@
 // NB: This gulp file is intended to be used with Gulp 4.x and won't
 // work with Gulp 3.x or below.
 var _ = require("lodash"),
+    babel = require("babelify"),
     browserify = require("browserify"),
     buffer = require("vinyl-buffer"),
     del = require("del"),
@@ -14,9 +15,9 @@ var _ = require("lodash"),
     path = require("path"),
     source = require("vinyl-source-stream"),
     sourcemaps = require("gulp-sourcemaps"),
-    ts = require('gulp-typescript'),
-    typescript = require('typescript');
+    watchify = require("watchify");
 
+var PRODUCTION = process.env.NODE_ENV === "production";
 
 /* LESS */
 
@@ -37,45 +38,44 @@ gulp.task("watch-less",function() {
 });
 
 
-/* TypeScript */
+/* ES6/Babel */
 
-var tsProject = ts.createProject('./ts/tsconfig.json', {
-  sortOutput: true,
-  typescript: typescript
+function compileES6(watch) {
+  var bundler = watchify(browserify('./js/main.es6', {
+    debug: !PRODUCTION
+  }).transform(babel, {presets: ["es2015"]}));
+
+  function rebundle() {
+    var b = bundler.bundle()
+      .on('error', function(err) { console.error(err); this.emit('end'); })
+      .pipe(source('app.js'))
+      .pipe(buffer());
+
+    if (! PRODUCTION) {
+      b.pipe(sourcemaps.init({ loadMaps: true }))
+       .pipe(sourcemaps.write());
+    }
+
+    return b.pipe(gulp.dest('./pub/js'))
+      .on('end', function(){ gutil.log('Done!'); });
+  }
+
+  if (watch) {
+    bundler.on('update', function() {
+      gutil.log('Bundling...');
+      rebundle();
+    });
+  }
+
+  return rebundle();
+}
+
+gulp.task("build-es6", function() {
+  return compileES6();
 });
 
-gulp.task("build-ts", function() {
-  return tsProject.src()
-    .pipe(sourcemaps.init())
-    .pipe(ts(tsProject))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./pub/js"));
-});
-
-gulp.task("watch-ts", function() {
-  return gulp.watch("./ts/**/*.{ts,tsx}", gulp.series("build-ts"));
-});
-
-
-/* Browserify bundle (for vendor files) */
-
-gulp.task("build-vendor", function() {
-  var opts = {
-    entries: ['./vendor.js'],
-
-    // Debug => true, get sourceMaps
-    debug: true,
-
-    // Full Paths => easier to debug
-    fullPaths: true
-  };
-
-  var bundler = browserify(opts);
-  return bundler.bundle()
-    .on('error', gutil.log)
-    .pipe(source('vendor.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('./pub/js'));
+gulp.task("watch-es6", function() {
+  return compileES6(true);
 });
 
 
@@ -122,14 +122,13 @@ gulp.task("clean", function() {
 gulp.task("build", gulp.series("clean",
   gulp.parallel("build-assets",
                 "build-fonts",
-                "build-vendor",
-                "build-ts",
+                "build-es6",
                 "build-less")));
 
 gulp.task("watch", gulp.series("build",
   gulp.parallel(
     "dev-server",
-    "watch-ts",
+    "watch-es6",
     "watch-less",
     "watch-assets"
   )

@@ -14,8 +14,9 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         #7E6990;
+@brand-primary:         #8C42AD;
 @brand-alt:             #56B68B;
+@brand-bg:              #7E6990;
 
 @brand-success:         #56B68B;
 @brand-info:            #5bc0de;
@@ -53,16 +54,16 @@
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
-@font-size-base:          14px;
-@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
-@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+@font-size-base:          16px;
+@font-size-large:         floor((@font-size-base * 1.15)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~14px
 
-@font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
-@font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
-@font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
-@font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
-@font-size-h5:            @font-size-base;
-@font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+@font-size-h1:            36px;
+@font-size-h2:            30px;
+@font-size-h3:            24px;
+@font-size-h4:            18px;
+@font-size-h5:            14px;
+@font-size-h6:            12px;
 
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14

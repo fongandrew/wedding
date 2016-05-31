@@ -4,6 +4,7 @@
 
 const _ = require('lodash');
 const $ = require('jquery');
+const MAX_PLUS_NAMES = 4;
 
 /*
   Save info for a guest to Firebase
@@ -94,6 +95,7 @@ export function cloneTemplate() {
   $(guestContainer).append(newGuest);
   newGuest.find(rmGuestBtn).click(function() {
     $(this).parents(groupSelector).remove();
+    $(addGuestBtn).prop("disabled", false);
   });
 }
 
@@ -124,7 +126,14 @@ export function validate() {
 export function init() {
   $(addGuestBtn).click(function(e) {
     e.preventDefault();
-    cloneTemplate();
+
+    var numChildren = $(guestContainer).children().length;
+    if (numChildren < MAX_PLUS_NAMES) {
+      cloneTemplate();
+      if (numChildren + 1 >= MAX_PLUS_NAMES) {
+        $(addGuestBtn).prop("disabled", true);
+      }
+    }
   });
 
   $(submitBtn).click(function(e) {

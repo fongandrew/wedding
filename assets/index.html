@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Andrew and Christina are Getting Married!</title>
+  <title>Andrew and Christina's Artisanal Wedding Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" />
   <link rel='stylesheet' type='text/css'
-        href='https://fonts.googleapis.com/css?family=Tangerine:700' />
+        href='https://fonts.googleapis.com/css?family=Tangerine:400,700' />
   <link rel="stylesheet" href="css/index.css" media="screen">
   <!-- <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
@@ -44,15 +44,23 @@
   <div id="splash" class="page">
     <div class="page-content">
       <h1>
-        Andrew Fong &amp;
-        <span class="no-break">Christina Chang</span>
+        <strong>
+          <span class="no-break">Andrew Fong</span>
+          &amp;
+          <span class="no-break">Christina Chang</span>
+        </strong>
         <br />
-        kindly request the pleasure of
-        your company at their wedding
+        kindly request the pleasure of your company at
+        <br />
+        the celebration of their marriage
       </h1>
-      <h3 class="dance-party-header">Let's Party!</h3>
+      <h2 class="dance-party-header">Let's Party!</h2>
       <h5 class="date-location-header">
-        October 1, 2016 | 4:30pm | Sunnyvale, CA
+        October 1, 2016 | 4:30pm
+        <span class="hidden-xs">|</span>
+        <span class="xs-block">
+          Sunnyvale, CA
+        </span>
       </h5>
     </div>
 
@@ -82,17 +90,17 @@
   <div class="page inverse">
     <div class="page-content container">
       <div class="row">
-        <div class="col-sm-12 col-info text-center">
-          <h4>Venue</h4>
+        <div class="col-sm-12 col-info col-info-primary text-center">
+          <h3>Venue</h3>
           <p>
             <a href="https://www.google.com/maps/place/Faz+Restaurants+%26+Catering/@37.4047782,-122.0274797,17z/data=!3m1!4b1!4m5!3m4!1s0x808fb7ba83430cc5:0xc784f3f7ccc3306e!8m2!3d37.404774!4d-122.025291">
-              FAZ @ The Sheraton<br />
+              FAZ @ Sheraton Sunnyvale<br />
               1108 N Mathilda Ave.<br />
               Sunnyvale, CA 94089
             </a>
           </p>
           <p>
-            Starts at 4:30 pm
+            Saturday, October 1, 2016 at 4:30pm
           </p>
         </div>
       </div>
@@ -108,7 +116,7 @@
         <div class="col-sm-6 col-info">
           <h4>Travel</h4>
           <p>
-            The Sheraton offers guests
+            The Sheraton Sunnyvale offers guests
             <a href="http://www.starwoodhotels.com/sheraton/property/area/transportation.html?propertyID=754&amp;language=en_US">complimentary shuttle service</a>.
           </p>
           <p>
@@ -142,11 +150,11 @@
   <a id="story" name="story" class="anchor"></a>
   <div class="page">
     <div class="page-content container">
-      <h2>Our Story</h2>
+      <h3>Our Story</h3>
       <div class="row"><div class="col-sm-12">
         <img class="photo" src="/img/justthe2ofus.jpg" />
         <div id="story-1" class="story-content">
-          <p>Andrew and Christina</p>
+          <p>Coming Soon</p>
         </div>
       </div></div>
     </div>
@@ -155,8 +163,8 @@
   <!-- RSVP -->
   <a id="rsvp" name="rsvp" class="anchor"></a>
   <div class="page inverse">
-    <div class="page-content container">
-      <h2>RSVP</h2>
+    <div class="page-content container narrow">
+      <h3>RSVP</h3>
 
       <div id="save-msg" class="alert alert-success msg">
         <i class="fa fa-fw fa-check"></i>
@@ -172,19 +180,18 @@
       <form id="rsvp-form" class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-2 control-label">
-            Attending?
+            Attendance
           </label>
           <div class="attending-radios col-sm-10">
             <label class="radio-inline">
               <input type="radio" name="attending" id="attending-yes"
                      value="yes" checked="checked" />
-              Yes!
+              Yes, I'm attending
             </label>
             <label class="radio-inline">
               <input type="radio" name="attending" id="attending-no"
                      value="no">
-              No, I am too busy saving the world from evil
-              space aliens.
+              No, I'm too busy saving the world
             </label>
           </div>
         </div>
@@ -219,34 +226,32 @@
           </div>
         </div>
 
-        <hr />
+        <div id="extra-guests" class="attending-show">
+          <div class="form-group add-guest-prompt clearfix">
+            <div class="col-sm-12">
+            <label for="add-guest-btn" class="form-text">
+              Are you bringing your significant other and/or children?
+            </label>
+            <button id="add-guest-btn" class="btn btn-info pull-right">
+              <i class="fa fa-plus"></i>
+              Add Guest
+            </button>
+            </div>
+          </div>
 
-        <div class="form-group add-guest-prompt clearfix attending-show">
-          <div class="col-sm-12">
-          <label for="add-guest-btn" class="form-text">
-            Are you bringing your significant other and/or kids?
-          </label>
-          <button id="add-guest-btn" class="btn btn-info pull-right">
-            <i class="fa fa-plus"></i>
-            Add Guest
-          </button>
+          <!-- Template = copy this for new elements -->
+          <div class="name-group template">
+            <input type="text" name="guest-name"
+              class="form-control name-input"
+              placeholder="First + Last Name" />
+            <i class="fa fa-fw fa-minus-circle action rm-action"></i>
+          </div>
+
+          <!-- New guests go here -->
+          <div class="row attending-show">
+            <div id="plus-ones" class="col-sm-12"></div>
           </div>
         </div>
-
-        <!-- Template = copy this for new elements -->
-        <div class="name-group template">
-          <input type="text" name="guest-name"
-            class="form-control name-input"
-            placeholder="First + Last Name" />
-          <i class="fa fa-fw fa-minus-circle action rm-action"></i>
-        </div>
-
-        <!-- New guests go here -->
-        <div class="row attending-show">
-          <div id="plus-ones" class="col-sm-12"></div>
-        </div>
-
-        <hr />
 
         <div class="form-group"><div class="col-sm-12">
           <button id="rsvp-submit-btn"
@@ -263,11 +268,11 @@
   <a id="gifts" name="gifts" class="anchor"></a>
   <div class="page">
     <div class="page-content container narrow">
-      <h2>Registry</h2>
+      <h3>Registry</h3>
       <p class="text-center">
-        Your presence and thoughts are the best gifts we could ask for,
-        but if you would like to share something more, we prefer the
-        methods below.
+        Your presence in our lives is the best gift we could ask for.
+        If you would like to share something more, we prefer the methods below.
+        Thank you!"
       </p>
       <div class="payment-btns row">
         <div class="col-sm-6">

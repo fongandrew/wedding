@@ -33,7 +33,7 @@
           <li><a href="#venue">Venue</a></li>
           <li><a href="#story">Story</a></li>
           <li><a href="#rsvp">RSVP</a></li>
-          <li><a href="#gifts">Gifts</a></li>
+          <li><a href="#gifts">Registry</a></li>
         </ul>
       </div>
     </div>
@@ -49,9 +49,9 @@
         kindly request the pleasure of
         your company at their wedding
       </h1>
-      <h3 class="dance-party-header">and dance party</h3>
+      <h3 class="dance-party-header">Let's Party!</h3>
       <h5 class="date-location-header">
-        October 1, 2016 - 4pm - Sunnyvale, CA
+        October 1, 2016 | 4:30pm | Sunnyvale, CA
       </h5>
     </div>
 
@@ -81,46 +81,17 @@
   <div class="page inverse">
     <div class="page-content container">
       <div class="row">
-        <div class="col-sm-3 col-info text-center">
+        <div class="col-sm-12 col-info text-center">
           <h4>Venue</h4>
           <p>
             <a href="https://www.google.com/maps/place/Faz+Restaurants+%26+Catering/@37.4047782,-122.0274797,17z/data=!3m1!4b1!4m5!3m4!1s0x808fb7ba83430cc5:0xc784f3f7ccc3306e!8m2!3d37.404774!4d-122.025291">
-              Faz @ The Sheraton Sunnyvale<br />
+              FAZ @ The Sheraton<br />
               1108 N Mathilda Ave.<br />
               Sunnyvale, CA 94089
             </a>
           </p>
           <p>
-            4pm - Late
-          </p>
-        </div>
-
-        <div class="col-sm-5 col-info">
-          <h4>Travel</h4>
-          <p>
-            The Sheraton offers
-            <a href="http://www.starwoodhotels.com/sheraton/property/area/transportation.html?propertyID=754&amp;language=en_US">complimentary shuttle service</a> to and from a five mile radius of the hotel, including
-            to Norman Mineta Airport (SJC).
-            Call [(408) 745-6000] to arrange for pick up.
-          </p>
-          <p>
-            If you are flying into SFO, you may want to take BART to Millbrae
-            and Caltrain south to Sunnyvale, where you can arrange for shuttle
-            pick up.
-          </p>
-        </div>
-
-        <div class="col-sm-4 col-info">
-          <h4>Accomodations</h4>
-          <p>
-            For your convenience, we've reserved a room block with the
-            <a href="http://www.sheratonsunnyvale.com/">
-              Sheraton Sunnyvale
-            </a> for Sept 30 and Oct 1. Rates are $[123] per night.
-          <p></p>
-            To make a reservation, call [(408) 745-6000] and let them know that
-            this is for the Chang/Fong wedding. Reservations must be placed on
-            or before [September 1, 2016].
+            Starts at 4:30 pm
           </p>
         </div>
       </div>
@@ -129,6 +100,40 @@
     <div class="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.3679007089445!2d-122.0274796853674!3d37.40477824113438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7ba83430cc5%3A0xc784f3f7ccc3306e!2sFaz+Restaurant!5e0!3m2!1sen!2sus!4v1464158559944" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen>
       </iframe>
+    </div>
+
+    <div class="page-content container">
+      <div class="row">
+        <div class="col-sm-6 col-info">
+          <h4>Travel</h4>
+          <p>
+            The Sheraton offers guests
+            <a href="http://www.starwoodhotels.com/sheraton/property/area/transportation.html?propertyID=754&amp;language=en_US">complimentary shuttle service</a>.
+          </p>
+          <p>
+            <strong>From SJC:</strong>
+            Call [(408) 745-6000] to arrange for pick up.
+          </p>
+          <p>
+            <strong>From SFO:</strong>
+            Public transit is available via BART to Millbrae, then
+            transfer to Caltrain southbound to Sunnyvale.
+          </p>
+        </div>
+
+        <div class="col-sm-6 col-info">
+          <h4>Accomodations</h4>
+          <p>
+            For your convenience, we've reserved a special room rate with the
+            <a href="http://www.sheratonsunnyvale.com/">
+              Sheraton Sunnyvale</a>. Rates are $[123] per night.
+          <p></p>
+            To make a reservation, call [(408) 745-6000] and let them know that
+            this is for the Chang/Fong wedding. Reservations must be placed on
+            or before [September 1, 2016].
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -184,18 +189,13 @@
         </div>
 
         <div class="form-group">
-          <label for="first-name-1" class="col-sm-2 control-label">
+          <label for="guest-name-1" class="col-sm-2 control-label">
             Name
           </label>
           <div class="col-sm-10">
-            <div class="name-group">
-            <input type="text" id="first-name-1" required="true"
-              name="first-name" class="form-control name-input first-name"
-              placeholder="Given Name" />
-            <input type="text" id="last-name-1" required="true"
-              name="last-name" class="form-control name-input last-name"
-              placeholder="Surname" />
-            </div>
+            <input type="text" id="guest-name-1" required="true"
+              name="guest-name" class="form-control name-input"
+              placeholder="First and Last Name" />
           </div>
         </div>
         <div class="form-group">
@@ -231,13 +231,10 @@
         </div>
 
         <!-- Template = copy this for new elements -->
-        <div class="name-group template">
-          <input type="text" name="first-name"
-            class="form-control name-input first-name"
-            placeholder="Given Name" />
-          <input type="text" name="last-name"
-            class="form-control name-input last-name"
-            placeholder="Surname" />
+        <div class="name-group form-group template">
+          <input type="text" name="guest-name"
+            class="form-control name-input"
+            placeholder="First + Last Name" />
           <i class="fa fa-fw fa-minus-circle action rm-action"></i>
         </div>
 
@@ -262,23 +259,21 @@
   <!-- Registry -->
   <a id="gifts" name="gifts" class="anchor"></a>
   <div class="page">
-    <div class="page-content vertical-center">
-      <div class="container narrow">
-        <h2>Gifts</h2>
-        <p class="text-center">
-          Your presence and thoughts are the best gifts we could ask for,
-          but if you would like to share something more, we prefer the
-          methods below.
-        </p>
-        <div class="payment-btns row">
-          <div class="col-sm-6">
-            <a href="https://www.paypal.me/andrewandchristina"
-               class="btn btn-primary btn-lg">PayPal</a>
-          </div>
-          <div class="col-sm-6">
-            <a href="https://venmo.com/AndrewFong"
-               class="btn btn-primary btn-lg">Venmo</a>
-          </div>
+    <div class="page-content container narrow">
+      <h2>Registry</h2>
+      <p class="text-center">
+        Your presence and thoughts are the best gifts we could ask for,
+        but if you would like to share something more, we prefer the
+        methods below.
+      </p>
+      <div class="payment-btns row">
+        <div class="col-sm-6">
+          <a href="https://www.paypal.me/andrewandchristina"
+             class="btn btn-primary btn-lg">PayPal</a>
+        </div>
+        <div class="col-sm-6">
+          <a href="https://venmo.com/AndrewFong"
+             class="btn btn-primary btn-lg">Venmo</a>
         </div>
       </div>
     </div>

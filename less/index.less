@@ -112,16 +112,17 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   background: linear-gradient(180deg, @body-bg 33%, lighten(@body-bg, 10%));
   min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   .page-content {
     position: relative;
     z-index: 20;
 
-    &.vertical-center {
-      position: absolute;
-      top: 40%;
-      transform: translateY(-50%);
-      width: 100%;
+    &:last-child {
+      margin-bottom: @navbar-height;
     }
   }
 
@@ -196,6 +197,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: @jumbotron-padding;
   padding-top: @navbar-height * 2;
   text-align: center;
+  display: block;
 
   h1 {
     font-family: 'Tangerine', cursive;
@@ -287,6 +289,10 @@ img.dancing-rabbit {
 }
 
 // Map
+.map-container {
+  width: 100%;
+}
+
 .map-container iframe {
   box-shadow: 0 2px 2px @shadow;
   background: @gray-lighter;
@@ -361,17 +367,6 @@ label.form-text {
 
 .name-group {
   position: relative;
-  display: flex;
-
-  .name-input {
-    // margin-bottom: @form-group-margin-bottom;
-    flex-grow: 1;
-    flex-shrink: 1;
-  }
-
-  .name-input + .name-input {
-    margin-left: @form-group-margin-bottom;
-  }
 
   .rm-action {
     position: absolute;
@@ -384,10 +379,6 @@ label.form-text {
     &:hover, &:focus {
       color: lighten(@brand-danger, 5%);
     }
-  }
-
-  & + .name-group {
-    margin-top: @form-group-margin-bottom;
   }
 }
 

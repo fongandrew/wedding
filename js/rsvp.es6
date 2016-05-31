@@ -10,10 +10,7 @@ const $ = require('jquery');
 
   data: {
     attending: boolean;
-    names: {
-      first: string;
-      last: string;
-    }[];
+    names: string[];
     email: string;
     address: string;
   }
@@ -27,22 +24,11 @@ export function saveGuest(data) {
 
 // Takes serialized name-value pairs and forms it for saving
 function formatData(data) {
-  var firstNames = _(data)
-    .filter((d) => d.name === "first-name")
-    .map((d) => d.value)
+  var names = _(data)
+    .filter((d) => d.name === "guest-name")
+    .map((d) => (d.value || "").trim())
+    .filter()
     .value();
-  var lastNames = _(data)
-    .filter((d) => d.name === "last-name")
-    .map((d) => d.value)
-    .value();
-  var names = _.map(
-    _.zip(firstNames, lastNames),
-    (tuple) => ({
-      first: (tuple[0] || "").trim(),
-      last: (tuple[1] || "").trim()
-    })
-  );
-  names = _.filter(names, (n) => n.first || n.last);
 
   return {
     attending: getValue(data, 'attending'),
@@ -75,7 +61,7 @@ function deactivate(elm) {
 function onSave() {
   activate(saveMsg);
   deactivate(errorMsg);
-  // $(rsvpForm).hide();
+  $(rsvpForm).hide();
 }
 
 function onError(err) {

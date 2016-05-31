@@ -44,7 +44,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   @media screen and (min-width: @screen-sm-min) {
+    &.medium {
+      max-width: 80%;
+    }
+
     &.narrow {
+      max-width: 60%;
+    }
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    &.medium {
       max-width: 60%;
     }
   }
@@ -61,6 +71,11 @@ h1, h2, h3, h4, h5, h6 {
       border-color: @btn-primary-bg;
     }
   }
+}
+
+button, button:active, button:focus,
+.btn, .btn:active, .btn:focus {
+  outline:0;
 }
 
 .navbar {

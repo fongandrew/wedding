@@ -3,6 +3,7 @@
 // NB: This gulp file is intended to be used with Gulp 4.x and won't
 // work with Gulp 3.x or below.
 var _ = require("lodash"),
+    autoprefixer = require("gulp-autoprefixer"),
     babel = require("babelify"),
     browserify = require("browserify"),
     buffer = require("vinyl-buffer"),
@@ -12,9 +13,12 @@ var _ = require("lodash"),
     gutil = require("gulp-util"),
     http = require("http"),
     less = require("gulp-less"),
+    minifyCss = require("gulp-cssnano"),
+    minifyHtml = require("gulp-htmlmin"),
     path = require("path"),
     source = require("vinyl-source-stream"),
     sourcemaps = require("gulp-sourcemaps"),
+    uglify = require("gulp-uglify"),
     watchify = require("watchify");
 
 var PRODUCTION = process.env.NODE_ENV === "production";
@@ -22,15 +26,24 @@ var PRODUCTION = process.env.NODE_ENV === "production";
 /* LESS */
 
 gulp.task("build-less", function() {
-  return gulp.src("./less/**/*.less")
+  var ret = gulp.src("./less/**/*.less")
     .pipe(sourcemaps.init())
     .pipe(less())
     .on('error', function(err) {
       console.error(err.toString());
       this.emit('end');
     })
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./pub/css"));
+    .pipe(autoprefixer());
+
+  if (PRODUCTION) {
+    ret = ret
+      .pipe(minifyCss({ zindex: false }))
+      .pipe(sourcemaps.write("./"))
+  } else {
+    ret = ret.pipe(sourcemaps.write());
+  }
+
+  return ret.pipe(gulp.dest("./pub/css"));
 });
 
 gulp.task("watch-less",function() {
@@ -42,18 +55,26 @@ gulp.task("watch-less",function() {
 
 function compileES6(watch) {
   var bundler = watchify(browserify('./js/main.es6', {
-    debug: !PRODUCTION
+    debug: true // Always write sourcemaps
   }).transform(babel, {presets: ["es2015"]}));
 
   function rebundle() {
     var b = bundler.bundle()
       .on('error', function(err) { console.error(err); this.emit('end'); })
       .pipe(source('app.js'))
-      .pipe(buffer());
+      .pipe(buffer())
+      .pipe(sourcemaps.init({ loadMaps: true }));
 
-    if (! PRODUCTION) {
-      b.pipe(sourcemaps.init({ loadMaps: true }))
-       .pipe(sourcemaps.write());
+    if (PRODUCTION) {
+      b = b
+        .pipe(uglify({
+          output: {
+            "ascii_only": true
+          }
+        }))
+        .pipe(sourcemaps.write("./"))
+    } else {
+      b = b.pipe(sourcemaps.write());
     }
 
     return b.pipe(gulp.dest('./pub/js'))
@@ -76,6 +97,24 @@ gulp.task("build-es6", function() {
 
 gulp.task("watch-es6", function() {
   return compileES6(true);
+});
+
+
+/* HTML */
+
+gulp.task("build-html", function() {
+  var ret = gulp.src("html/**/*.html");
+  if (PRODUCTION) {
+    ret = ret.pipe(minifyHtml({
+      collapseWhitespace: true,
+      conservativeCollapse: true
+    }));
+  }
+  return ret.pipe(gulp.dest("./pub"));
+});
+
+gulp.task("watch-html", function() {
+  return gulp.watch("html/**/*.html", gulp.series("build-html"));
 });
 
 
@@ -122,16 +161,24 @@ gulp.task("clean", function() {
 gulp.task("build", gulp.series("clean",
   gulp.parallel("build-assets",
                 "build-fonts",
+                "build-html",
                 "build-es6",
                 "build-less")));
 
 gulp.task("watch", gulp.series("build",
   gulp.parallel(
     "dev-server",
+    "watch-html",
     "watch-es6",
     "watch-less",
     "watch-assets"
   )
 ));
+
+gulp.task("prod", gulp.series(function(cb) {
+  process.env.NODE_ENV = "production";
+  PRODUCTION = true;
+  cb();
+}, "build"))
 
 gulp.task("default", gulp.series("build"));

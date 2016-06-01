@@ -61,6 +61,14 @@ function onSave() {
 function onError(err) {
   activate(errorMsg);
   deactivate(saveMsg);
+  if (! err instanceof Error) {
+    err = new Error(err);
+  }
+  try {
+    throw err;
+  } catch (e) {
+    _errs.push(e);
+  }
 }
 
 

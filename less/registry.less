@@ -18,7 +18,7 @@
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  max-width: 325px;
+  max-width: 500px;
   box-sizing: border-box;
   margin: (@form-group-margin-bottom / 2) 0;
 
@@ -27,6 +27,7 @@
 
   @media screen and (min-width: @screen-sm-min) {
     margin: @form-group-margin-bottom / 2;
+    max-width: 325px;
   }
 
   background: #FCFCFC;
@@ -34,6 +35,22 @@
   padding: 0;
   box-shadow: 1px 1px 2px @shadow;
   overflow: auto;
+
+  &#friends-item {
+    @media screen and (min-width: @screen-lg-min) {
+      max-width: 750px + @form-group-margin-bottom;
+    }
+
+    .item-img {
+      height: 450px;
+      background: url('/img/friends.jpg') no-repeat center bottom;
+      background-size: cover;
+
+      @media screen and (min-width: @screen-sm-min) {
+        height: 325px;
+      }
+    }
+  }
 
   .item-header {
     position: relative;

@@ -27,7 +27,7 @@ var PRODUCTION = process.env.NODE_ENV === "production";
 /* LESS */
 
 gulp.task("build-less", function() {
-  var ret = gulp.src("./less/**/*.less")
+  var ret = gulp.src(["less/**/*.less", "!less/**/_*.less"])
     .pipe(sourcemaps.init())
     .pipe(less())
     .on('error', function(err) {

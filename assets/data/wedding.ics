@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-TIMEZONE:America/Los_Angeles
+X-WR-CALDESC:
+BEGIN:VEVENT
+DTSTART:20161001T233000Z
+DTEND:20161002T060000Z
+DTSTAMP:20160601T150710Z
+UID:e8bdlph2d2gi4nb90nkjbe4muc@google.com
+CREATED:20160601T150214Z
+DESCRIPTION:Andrew and Christina are getting married! Go to https://www.awe
+ someweddingwebsite.com/ for more details.
+LAST-MODIFIED:20160601T150331Z
+LOCATION:FAZ @ Sheraton Sunnyvale\, 1108 North Mathilda Avenue\, Sunnyvale\
+ , CA\, United States
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Andrew & Christina's Wedding
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

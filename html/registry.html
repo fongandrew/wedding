@@ -1,32 +1,152 @@
 {% extends "_base.html" %}
 
 {% block head %}
-  <link rel="stylesheet" href="css/index.css" media="screen">
+  <link rel="stylesheet" href="css/registry.css" media="screen">
 {% endblock %}
+
+{% macro payment(amount, note="") %}
+  <div class="payment-btns">
+    <a href="https://www.paypal.me/andrewandchristina/{{ amount }}"
+       class="btn btn-default">
+      <img alt="PayPal" title="PayPal" src="/img/PayPal.svg" />
+    </a>
+    <a href="https://venmo.com/?txn=pay&amp;audience=private&amp;recipients=AndrewFong&amp;amount={{ amount }}&amp;note={{ note|urlencode }}"
+       class="btn btn-default">
+      <img alt="Venmo" title="Venmo" src="/img/Venmo.svg" />
+    </a>
+  </div>
+{% endmacro %}
 
 {% block main %}
 
 <a id="gifts" name="gifts" class="anchor"></a>
 <div class="page">
-  <div class="page-content container narrow">
+  <div class="page-content container">
     <h3>Registry</h3>
-    <p class="text-center">
-      Your presence in our lives is the best gift we could ask for.
-      If you would like to share something more, we prefer the methods below.
-      Thank you!
+    <p class="text-center container medium">
+      If you would like to contribute something to our life as a married
+      couple, please consider the following. Thank you!
     </p>
-    <div class="payment-btns row">
-      <div class="col-sm-6">
-        <a href="https://www.paypal.me/andrewandchristina"
-           class="btn btn-default btn-lg">
-          <img alt="PayPal" title="PayPal" src="/img/PayPal.svg" />
-        </a>
+
+    <div id="registry-items">
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Gym Membership</h4>
+          <span class="price">$400</span>
+          <img class="item-img" src="/img/gym.jpg" />
+        </div>
+        <div class="description">
+          <p>Because it's all going downhill after the wedding.</p>
+        </div>
+        {{ payment(400, "Gym Membership") }}
       </div>
-      <div class="col-sm-6">
-        <a href="https://venmo.com/AndrewFong"
-           class="btn btn-default btn-lg">
-          <img alt="Venmo" title="Venmo" src="/img/Venmo.svg" />
-        </a>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Roomba</h4>
+          <span class="price">$360</span>
+          <img class="item-img" src="/img/roomba.jpg" />
+        </div>
+        <div class="description">
+          <p>Christina wants to spend less time vacuuming.</p>
+          <p>Andrew wants a robot.</p>
+        </div>
+        {{ payment(360, "Roomba") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Home Owner Association Fee</h4>
+          <span class="price">$300</span>
+          <img class="item-img" src="/img/house.jpg" />
+        </div>
+        <div class="description">
+          <p>Because neighbors.</p>
+        </div>
+        {{ payment(300, "HOA Fee") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Month's Supply of Fruit</h4>
+          <span class="price">$200</span>
+          <img class="item-img" src="/img/fruit.jpg" />
+        </div>
+        <div class="description">
+          <p>Christina eats a lot of fruit.</p>
+        </div>
+        {{ payment(200, "Fruit") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Month's Supply of Coffee</h4>
+          <span class="price">$200</span>
+          <img class="item-img" src="/img/coffee.jpg" />
+        </div>
+        <div class="description">
+          <p>Andrew drinks a lot of coffee.</p>
+        </div>
+        {{ payment(200, "Coffee") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>A Printer That Works</h4>
+          <span class="price">$150</span>
+          <img class="item-img" src="/img/printer.jpg" />
+        </div>
+        <div class="description">
+          <p>Because the one we currently have doesn't.</p>
+        </div>
+        {{ payment(150, "Printer") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Paper Shredder</h4>
+          <span class="price">$125</span>
+          <img class="item-img" src="/img/shredder.jpg" />
+        </div>
+        <div class="description">
+          <p>To keep the printer company. Also junk mail.</p>
+        </div>
+        {{ payment(125, "Shredder") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Costco Membership</h4>
+          <span class="price">$100</span>
+          <img class="item-img" src="/img/costco.png" />
+        </div>
+        <div class="description">
+          <p>Costco. It's what's for dinner.</p>
+        </div>
+        {{ payment(100, "Costco") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Folding Chairs</h4>
+          <span class="price">$50</span>
+          <img class="item-img" src="/img/folding-chairs.jpg" />
+        </div>
+        <div class="description">
+          <p>So you have a place to sit when you come visit.</p>
+        </div>
+        {{ payment(50, "Chairs") }}
+      </div>
+
+      <div class="registry-item">
+        <div class="item-header">
+          <h4>Time With Friends and Family</h4>
+          <span class="price">Priceless</span>
+          <img class="item-img" src="/img/friends.jpg" />
+        </div>
+        <div class="description">
+          <p>Your presence in our lives is the best gift we could ask for.</p>
+        </div>
       </div>
     </div>
   </div>

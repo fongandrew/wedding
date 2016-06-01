@@ -149,6 +149,39 @@ img.dancing-rabbit {
 }
 
 
+/* Story */
+
+img.photo {
+  border: @padding-large-horizontal solid white;
+  box-shadow: 2px 2px 2px @shadow;
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+
+  // Slighty rotatation animation
+  transition: transform 0.6s;
+  transform-origin: @padding-base-horizontal @padding-base-vertical;
+  &.active {
+    transform: rotate(3deg);
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    // float: left;
+    // margin: 0 @padding-large-horizontal * 2;
+    margin: 0 auto;
+    max-width: 50%;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    max-width: 33%;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    max-width: 25%;
+  }
+}
+
+
 /* RSVP */
 
 .msg {
@@ -239,21 +272,5 @@ label.form-text {
 
   &.active {
     display: inline-block;
-  }
-}
-
-
-/* Registry */
-.payment-btns {
-  text-align: center;
-
-  .btn {
-    width: 100%;
-    margin-bottom: @form-group-margin-bottom;
-  }
-
-  img {
-    height: @input-height-base;
-    width: auto;
   }
 }

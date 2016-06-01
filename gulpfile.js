@@ -13,6 +13,7 @@ var _ = require("lodash"),
     gutil = require("gulp-util"),
     http = require("http"),
     less = require("gulp-less"),
+    merge = require("merge-stream"),
     minifyCss = require("gulp-cssnano"),
     minifyHtml = require("gulp-htmlmin"),
     nunjucks = require("gulp-nunjucks-render"),
@@ -54,15 +55,18 @@ gulp.task("watch-less",function() {
 
 /* ES6/Babel */
 
-function compileES6(watch) {
-  var bundler = watchify(browserify('./js/main.es6', {
+function compileES6(entry, watch) {
+  var bundler = watchify(browserify(entry, {
     debug: true // Always write sourcemaps
   }).transform(babel, {presets: ["es2015"]}));
+
+  var target = path.basename(entry);
+  target = target.substr(0, target.lastIndexOf(".")) + ".js";
 
   function rebundle() {
     var b = bundler.bundle()
       .on('error', function(err) { console.error(err); this.emit('end'); })
-      .pipe(source('app.js'))
+      .pipe(source(target))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }));
 
@@ -79,12 +83,12 @@ function compileES6(watch) {
     }
 
     return b.pipe(gulp.dest('./pub/js'))
-      .on('end', function(){ gutil.log('Done!'); });
+      .on('end', function(){ gutil.log(target + ' done!'); });
   }
 
   if (watch) {
     bundler.on('update', function() {
-      gutil.log('Bundling...');
+      gutil.log('Bundling ' + target + " ...");
       rebundle();
     });
   }
@@ -93,11 +97,17 @@ function compileES6(watch) {
 }
 
 gulp.task("build-es6", function() {
-  return compileES6();
+  return merge(
+    compileES6("./js/index.es6"),
+    compileES6("./js/registry.es6")
+  );
 });
 
 gulp.task("watch-es6", function() {
-  return compileES6(true);
+  return merge(
+    compileES6("./js/index.es6", true),
+    compileES6("./js/registry.es6", true)
+  );
 });
 
 

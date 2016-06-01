@@ -2,8 +2,10 @@
   RSVP Section
 */
 
-const _ = require('lodash');
-const $ = require('jquery');
+import _ from 'lodash';
+import $ from 'jquery';
+import {activate, deactivate, isActive, toggle} from "./active.es6";
+
 const MAX_PLUS_NAMES = 4;
 
 /*
@@ -49,15 +51,6 @@ function getValue(data, key) {
 
 const saveMsg = "#save-msg";
 const errorMsg = "#error-msg";
-const activeClass = "active";
-
-function activate(elm) {
-  $(elm).addClass(activeClass);
-}
-
-function deactivate(elm) {
-  $(elm).removeClass(activeClass);
-}
 
 function onSave() {
   activate(saveMsg);

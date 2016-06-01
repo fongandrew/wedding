@@ -1,54 +1,14 @@
-const _ = require('lodash');
-const $ = require('jquery');
-const Conf = require('./conf.es6');
-const RSVP = require('./rsvp.es6');
+import _ from 'lodash';
+import $ from 'jquery';
+import {activate, deactivate, isActive, toggle} from "./active.es6";
 
-const activeCls = "active";
-
-function activate(selector) {
-  $(selector).addClass(activeCls);
-}
-
-function deactivate(selector) {
-  $(selector).removeClass(activeCls);
-}
-
-function isActive(selector) {
-  return $(selector).hasClass(activeCls);
-}
-
-function toggle(selector) {
-  if (isActive(selector)) {
-    deactivate(selector);
-  } else {
-    activate(selector);
+// Splits href into base + hash
+function getPath(href) {
+  var parts = href.split("#");
+  return {
+    base: parts.length > 1 ? (parts[0] || "/") : location.pathname,
+    hash: "#" + (parts.length > 1 ? (parts[1] || "") : parts[0])
   }
-}
-
-
-/* Dance party */
-
-function splashDanceParty() {
-  activate(".dance-party-header");
-}
-
-function splashDancePartyBunnies() {
-  activate("#splash .page-background");
-}
-
-function showDateLocationHeader() {
-  activate(".date-location-header");
-}
-
-// Fix Google Map scroll issue
-var mapFixed = false;
-function fixMap() {
-  if (mapFixed) return;
-  $('.map-container iframe').css("pointer-events", "none");
-  $('.map-container').unbind().click(function() {
-    $(this).find('iframe').css("pointer-events", "auto");
-    mapFixed = false;
-  });
 }
 
 
@@ -85,15 +45,6 @@ function navOff() {
 
 
 /* Scrolling for navbar */
-
-// Splits href into base + hash
-function getPath(href) {
-  var parts = href.split("#");
-  return {
-    base: parts.length > 1 ? (parts[0] || "/") : location.pathname,
-    hash: "#" + (parts.length > 1 ? (parts[1] || "") : parts[0])
-  }
-}
 
 function navbarScrollLinks() {
   $(".navbar-nav li a, .scroll-link").click(function() {
@@ -137,6 +88,7 @@ function navbarScrollLinks() {
   });
 }
 
+
 // Fire events when scrolling past navlinks
 function scrollNavLink() {
   var tops = [];
@@ -154,8 +106,6 @@ function scrollNavLink() {
     }
   });
 
-  console.info(tops, elms);
-
   $(window).scroll(function() {
     var offset = window.pageYOffset + 100; // +100 for navbar and padding
     var index = _.findLastIndex(tops, (t) => offset > t);
@@ -168,52 +118,13 @@ function scrollNavLink() {
       deactivate(navMenuLinks);
     }
   });
+
+  // Trigger initial callback
+  $(window).scroll();
 }
 
-// Fire event when scrolling past photo
-function scrollFirePhoto() {
-  $('.page').each(function(index, elm) {
-    var top = $(elm).offset().top;
-    $(window).scroll(function() {
-      // 100px buffer for stuff like navbar
-      if (window.pageYOffset + 100 > top) {
-        setTimeout(function() {
-          $(elm).find('.photo').addClass('active')
-        }, Conf.PhotoActiveDelay);
-      };
-    });
-  });
-}
-
-function init() {
-  // Splash
-  setTimeout(splashDanceParty, Conf.DancePartyHeaderStart);
-  setTimeout(splashDancePartyBunnies, Conf.DancePartyHeaderBunnies);
-  setTimeout(showDateLocationHeader, Conf.ShowDateLocationHeader);
-
-  // Map
-  fixMap();
-  $(window).scroll(fixMap);
-
-  // Navbar settings
+export function init() {
   navToggles();
   scrollNavLink();
   navbarScrollLinks();
-
-  // Misc event handlers
-  scrollFirePhoto();
-
-  // Hook up RSVP code
-  RSVP.init();
 }
-
-
-$(document).ready(function() {
-  init();
-});
-
-
-
-/* For console */
-window.$ = window.jquery = $;
-window._ = window.lodash = _;

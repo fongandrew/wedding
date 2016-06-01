@@ -144,12 +144,14 @@ export function init() {
       $(submitBtn).prop("disabled", true);
 
       var data = $(rsvpForm).serializeArray();
+      var post = function() {
+        deactivate($(submitBtn).find(spinner));
+        $(e).prop("disabled", false);
+      };
+
       saveGuest(formatData(data))
         .then(onSave, onError)
-        .always(function() {
-          deactivate($(submitBtn).find(spinner));
-          $(e).prop("disabled", false);
-        });
+        .then(post, post);
     }
   });
 

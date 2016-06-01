@@ -86,38 +86,52 @@ function navOff() {
 
 /* Scrolling for navbar */
 
+// Splits href into base + hash
+function getPath(href) {
+  var parts = href.split("#");
+  return {
+    base: parts.length > 1 ? (parts[0] || "/") : location.pathname,
+    hash: "#" + (parts.length > 1 ? (parts[1] || "") : parts[0])
+  }
+}
+
 function navbarScrollLinks() {
   $(".navbar-nav li a, .scroll-link").click(function() {
-    var target = $(this).attr('href');
-    if (target === "#") { target = "#splash"; }
+    var pathObj = getPath($(this).attr('href'));
 
-    var targetElm = $(target);
-    if (targetElm.length) {
+    // Base is equal to path, try to scroll
+    if (location.pathname === pathObj.base) {
+      var target = pathObj.hash;
+      if (target === "#") { target = "#splash"; }
 
-      // Customize duration based on expected travel time
-      var current = $('body').scrollTop();
-      var dest = targetElm.offset().top;
-      var duration = Math.abs(current - dest) / 1; // 1px per ms
+      var targetElm = $(target);
+      if (targetElm.length) {
 
-      // Default to 800 if bad math for whatever reason
-      if (isNaN(duration)) { duration = 800; }
+        // Customize duration based on expected travel time
+        var current = $('body').scrollTop();
+        var dest = targetElm.offset().top;
+        var duration = Math.abs(current - dest) / 1; // 1px per ms
 
-      // Cap longer scrolls
-      duration = Math.min(duration, 1000);
+        // Default to 800 if bad math for whatever reason
+        if (isNaN(duration)) { duration = 800; }
 
-      // Animate scroll
-      $('html, body').animate({
-        scrollTop: targetElm.offset().top
-      }, duration);
+        // Cap longer scrolls
+        duration = Math.min(duration, 1000);
 
-      // Nav-off
-      navOff();
+        // Animate scroll
+        $('html, body').animate({
+          scrollTop: targetElm.offset().top
+        }, duration);
 
-      // Scrolling, ignore default link behavior
-      return false;
+        // Nav-off
+        navOff();
+
+        // Scrolling, ignore default link behavior
+        return false;
+      }
     }
 
-    // Not scrolling -- failed for whatever reason so just try to jump
+    // Not scrolling or base doesn't match -- so just try to go to
     // to link
     return true;
   });
@@ -128,13 +142,19 @@ function scrollNavLink() {
   var tops = [];
   var elms = [];
   $(navMenuLinks).each(function(index, elm) {
-    var target = $(elm).find('a').attr('href');
-    var targetElm = $(target);
-    if (targetElm.length) {
-      tops.push(targetElm.offset().top);
+    var pathObj = getPath($(elm).find('a').attr('href'));
+
+    // Base is equal to path, set up
+    if (location.pathname === pathObj.base) {
+      var targetElm = $(pathObj.hash);
+      if (targetElm.length) {
+        tops.push(targetElm.offset().top);
+        elms.push($(elm));
+      }
     }
-    elms.push($(elm));
   });
+
+  console.info(tops, elms);
 
   $(window).scroll(function() {
     var offset = window.pageYOffset + 100; // +100 for navbar and padding

@@ -40,6 +40,25 @@
       transform: translateY(25%);
     }
   }
+
+  #down-arrow {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: fadeout(@link-color, 50%);
+    font-size: 2em;
+    padding: @padding-large-vertical @padding-large-horizontal;
+
+    &.active {
+      display: block;
+      animation: fade-in 1s;
+    }
+
+    &:hover, &:focus {
+      color: fadeout(@link-hover-color, 50%);
+    }
+  }
 }
 
 .dance-party-header {

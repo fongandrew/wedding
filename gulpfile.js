@@ -15,6 +15,7 @@ var _ = require("lodash"),
     less = require("gulp-less"),
     minifyCss = require("gulp-cssnano"),
     minifyHtml = require("gulp-htmlmin"),
+    nunjucks = require("gulp-nunjucks-render"),
     path = require("path"),
     source = require("vinyl-source-stream"),
     sourcemaps = require("gulp-sourcemaps"),
@@ -103,13 +104,18 @@ gulp.task("watch-es6", function() {
 /* HTML */
 
 gulp.task("build-html", function() {
-  var ret = gulp.src("html/**/*.html");
+  var ret = gulp.src(["html/**/*.html", "!html/**/_*.html"])
+    .pipe(nunjucks({
+      path: ['html']
+    }));
+
   if (PRODUCTION) {
     ret = ret.pipe(minifyHtml({
       collapseWhitespace: true,
       conservativeCollapse: true
     }));
   }
+
   return ret.pipe(gulp.dest("./pub"));
 });
 

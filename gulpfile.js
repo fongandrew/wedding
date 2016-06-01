@@ -117,7 +117,11 @@ gulp.task("build-html", function() {
   var ret = gulp.src(["html/**/*.html", "!html/**/_*.html"])
     .pipe(nunjucks({
       path: ['html']
-    }));
+    }))
+    .on('error', function(err) {
+      console.error(err.toString());
+      this.emit('end');
+    });
 
   if (PRODUCTION) {
     ret = ret.pipe(minifyHtml({

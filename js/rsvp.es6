@@ -22,6 +22,7 @@ export function saveGuest(data) {
   var updates = {};
   var key = firebase.database().ref().child('guests').push().key;
   updates['/guests/' + key] = data;
+  data.timestamp = firebase.database.ServerValue.TIMESTAMP;
   return firebase.database().ref().update(updates);
 }
 
@@ -34,7 +35,7 @@ function formatData(data) {
     .value();
 
   return {
-    attending: getValue(data, 'attending'),
+    attending: getValue(data, 'attending') === 'yes',
     names: names,
     email: getValue(data, 'email'),
     address: getValue(data, 'address')

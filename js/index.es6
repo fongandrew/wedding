@@ -18,7 +18,6 @@ function splashDancePartyBunnies() {
 
 function showDateLocationHeader() {
   activate(".date-location-header");
-  activate("#down-arrow");
 }
 
 // Fix Google Map scroll issue

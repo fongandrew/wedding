@@ -6,8 +6,8 @@ import {activate, deactivate, isActive, toggle} from "./active.es6";
 function getPath(href) {
   var parts = href.split("#");
   return {
-    base: parts.length > 1 ? (parts[0] || "/") : location.pathname,
-    hash: "#" + (parts.length > 1 ? (parts[1] || "") : parts[0])
+    base: parts[0] || location.pathname,
+    hash: "#" + (parts[1] || "")
   }
 }
 

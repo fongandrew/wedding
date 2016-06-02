@@ -35,7 +35,9 @@ gulp.task("build-less", function() {
       console.error(err.toString());
       this.emit('end');
     })
-    .pipe(autoprefixer());
+    .pipe(autoprefixer({
+      browsers: ['last 3 versions']
+    }));
 
   if (PRODUCTION) {
     ret = ret

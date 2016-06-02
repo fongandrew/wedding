@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="css/responses.css" media="screen">
+{% endblock %}
+
+{% block main %}
+<div class="main">
+  <div>
+    <a class="sign-out-link" href="#">Sign Out</a>
+  </div>
+
+  <table id="responses" class="table">
+  <tr>
+    <th>Attending</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Count</th>
+  </tr>
+  </table>
+</div>
+
+{% include "_firebase.html" %}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="js/responses.js"></script>
+
+{% endblock %}

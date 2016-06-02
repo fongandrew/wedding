@@ -101,14 +101,16 @@ function compileES6(entry, watch) {
 gulp.task("build-es6", function() {
   return merge(
     compileES6("./js/index.es6"),
-    compileES6("./js/registry.es6")
+    compileES6("./js/registry.es6"),
+    compileES6("./js/responses.es6")
   );
 });
 
 gulp.task("watch-es6", function() {
   return merge(
     compileES6("./js/index.es6", true),
-    compileES6("./js/registry.es6", true)
+    compileES6("./js/registry.es6", true),
+    compileES6("./js/responses.es6", true)
   );
 });
 

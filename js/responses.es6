@@ -59,6 +59,7 @@ function renderResponses(responses) {
     elm.append(renderTd(r.email));
     elm.append(renderTd(r.address));
     elm.append(renderTd(r.attending ? r.names.length : 0));
+    elm.append(renderTd(r.note));
     $(responseTable).append(elm);
   });
 }

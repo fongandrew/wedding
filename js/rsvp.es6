@@ -16,6 +16,7 @@ const MAX_PLUS_NAMES = 4;
     names: string[];
     email: string;
     address: string;
+    note: string;
   }
 */
 export function saveGuest(data) {
@@ -38,7 +39,8 @@ function formatData(data) {
     attending: getValue(data, 'attending') === 'yes',
     names: names,
     email: getValue(data, 'email'),
-    address: getValue(data, 'address')
+    address: getValue(data, 'address'),
+    note: getValue(data, 'note')
   };
 }
 

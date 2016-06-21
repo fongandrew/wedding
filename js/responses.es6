@@ -41,6 +41,7 @@ function onAuthCheck(user) {
 
 /* Display responses */
 const responseTable = "#responses";
+const totalCount = "#total-count";
 
 function getResponses() {
   console.info("Getting responses");
@@ -52,16 +53,23 @@ function getResponses() {
 }
 
 function renderResponses(responses) {
+  var total = 0;
   _.each(responses, (r) => {
     var elm = $('<tr>');
     elm.append(renderTd(r.attending ? "Yes" : "No"));
     elm.append(renderTd(r.names.join("\n")));
     elm.append(renderTd(r.email));
     elm.append(renderTd(r.address));
-    elm.append(renderTd(r.attending ? r.names.length : 0));
+
+    var count = r.attending ? r.names.length : 0
+    elm.append(renderTd(count));
     elm.append(renderTd(r.note));
     $(responseTable).append(elm);
+
+    total += count;
   });
+
+  $(totalCount).text(total);
 }
 
 function renderTd(text) {

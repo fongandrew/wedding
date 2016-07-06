@@ -5,6 +5,12 @@ import * as Nav from './nav.es6';
 import * as RSVP from './rsvp.es6';
 import {activate, deactivate, isActive, toggle} from "./active.es6";
 
+/*
+  Import doesn't do anything -- we just copied Bootstrap's Carousel and
+  added some things to make it play nice with ES6
+*/
+import * as Carousel from "./carousel.js";
+
 
 /* Dance party */
 
@@ -31,20 +37,21 @@ function fixMap() {
   });
 }
 
-// Fire event when scrolling past photo
-function scrollFirePhoto() {
-  $('.page').each(function(index, elm) {
-    var top = $(elm).offset().top;
-    $(window).scroll(function() {
-      // 100px buffer for stuff like navbar
-      if (window.pageYOffset + 100 > top) {
-        setTimeout(function() {
-          $(elm).find('.photo').addClass('active')
-        }, Conf.PhotoActiveDelay);
-      };
-    });
+// Photo carousel
+const carousel = "#photo-carousel";
+function setCarousel() {
+  $(carousel).carousel({
+    interval: 5000
   });
+
+  $(carousel).find('img').click(function() {
+    let src = $(this).attr('src');
+    if (src) {
+      window.open(src,'_blank');
+    }
+  })
 }
+
 
 function init() {
   // Splash
@@ -59,8 +66,8 @@ function init() {
   // Navbar settings
   Nav.init();
 
-  // Misc event handlers
-  scrollFirePhoto();
+  // Configure photo carousel
+  setCarousel();
 
   // Hook up RSVP code
   RSVP.init();

@@ -41,7 +41,7 @@ function fixMap() {
 const carousel = "#photo-carousel";
 function setCarousel() {
   $(carousel).carousel({
-    interval: 5000
+    interval: 3000
   });
 
   $(carousel).find('img').click(function() {
